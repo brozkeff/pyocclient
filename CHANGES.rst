@@ -1,6 +1,13 @@
 Changelog
 =========
 
+0.6+brozkeff.20261026.sha.a33ddcbb.r2
+---------------------------------
+
+- Fixed error-body inspection for integer HTTP and OCS status codes [brozkeff]
+- Fixed OCS error-message parsing for Python 3 byte responses [brozkeff]
+- Clarified upstream archive hashes and reproducible Git installation [brozkeff]
+
 0.6+brozkeff.20260622.sha.a33ddcbb.r1
 ---------------------------------
 

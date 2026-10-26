@@ -22,6 +22,7 @@ class ResponseError(Exception):
     def __init__(self, res, errorType):
         if type(res) is int:
             code = res
+            self.res = None
         else:
             code = res.status_code
             self.res = res
@@ -41,9 +42,8 @@ class OCSResponseError(ResponseError):
 
     def get_resource_body(self):
         if self.res is not None:
-            import xml.etree.ElementTree as ElementTree
             try:
-                root_element = ElementTree.fromstringlist(self.res.content)
+                root_element = ET.fromstring(self.res.content)
                 if root_element.tag == 'message':
                     return root_element.text
             except ET.ParseError:

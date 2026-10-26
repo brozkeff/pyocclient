@@ -23,11 +23,18 @@ With `pip`:
 pip install "pyocclient @ git+https://github.com/brozkeff/pyocclient.git"
 ```
 
-To pin a specific fork release tag:
+To pin maintenance revision 2, including the error-body handling fixes:
 
 ```bash
-uv add "pyocclient @ git+https://github.com/brozkeff/pyocclient.git@v0.6+brozkeff.20260622.sha.a33ddcbb.r1"
+uv add "pyocclient @ git+https://github.com/brozkeff/pyocclient.git@v0.6+brozkeff.20261026.sha.a33ddcbb.r2"
 ```
+
+The same tag suffix works with the `pip install` command above. The unpinned
+commands install the default branch; use a tag or full commit hash for a
+reproducible snapshot.
+
+The original June 22 revision remains available at tag
+`v0.6+brozkeff.20260622.sha.a33ddcbb.r1`.
 
 ## Usage
 
@@ -51,11 +58,20 @@ Fork builds use PEP 440 local versions based on upstream `0.6`:
 Example:
 
 ```text
-0.6+brozkeff.20260622.sha.a33ddcbb.r1
+0.6+brozkeff.20261026.sha.a33ddcbb.r2
 ```
 
 This keeps the fork clearly tied to the official 0.6 release while allowing
 multiple non-maintainer updates.
+
+The `sha.a33ddcbb` component identifies the upstream source archive's SHA256
+prefix, not a Git commit in this fork. It stays the same while the upstream
+baseline stays the same. The date identifies the fork revision; committing or
+pushing it later does not change the package version automatically.
+
+Version tags can mark stable snapshots using `v` followed by the package version.
+A tag must exist on GitHub before it can be used as an installation suffix.
+GitHub Releases are optional; Git installation needs only a commit or tag.
 
 ## Upstream Provenance
 
@@ -74,6 +90,7 @@ The current fork baseline is:
   do not fall back to legacy `setup.py bdist_wheel`.
 - Fix Python 3.12 invalid escape `SyntaxWarning` messages in docstrings.
 - Declare this fork as Python 3-only maintenance metadata.
+- Fix error-body inspection for integer status codes and Python 3 OCS responses.
 
 The original integration tests require a configured live ownCloud instance.
 For local compatibility checks, build the package and verify import:
@@ -82,5 +99,6 @@ For local compatibility checks, build the package and verify import:
 uv build
 uv run python -m compileall owncloud
 uv run python -c "import importlib.metadata as m; import owncloud; print(m.version('pyocclient'))"
+uv run --no-project --with requests --with six python -m unittest discover -s tests -v
 ```
 

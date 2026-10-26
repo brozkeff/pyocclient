@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "pyocclient"
-version = "0.6+brozkeff.20260622.sha.a33ddcbb.r1"
+version = "0.6+brozkeff.20261026.sha.a33ddcbb.r2"
 description = "Python client library for ownCloud"
 readme = "README.md"
 requires-python = ">=3.10"
