@@ -1,0 +1,44 @@
+[build-system]
+requires = ["setuptools>=77", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pyocclient"
+version = "0.6+brozkeff.20260622.sha.a33ddcbb.r1"
+description = "Python client library for ownCloud"
+readme = "README.md"
+requires-python = ">=3.10"
+license = "MIT"
+license-files = ["LICENSE.txt"]
+authors = [
+    { name = "Vincent Petry", email = "pvince81@owncloud.com" },
+]
+maintainers = [
+    { name = "brozkeff" },
+]
+dependencies = [
+    "requests>=2.0.1",
+    "six",
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Environment :: Web Environment",
+    "Intended Audience :: Developers",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Internet :: WWW/HTTP",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+]
+
+[project.urls]
+Homepage = "https://github.com/brozkeff/pyocclient"
+Upstream = "https://github.com/owncloud/pyocclient/"
+Source = "https://github.com/brozkeff/pyocclient"
+
+[tool.setuptools]
+packages = ["owncloud", "owncloud.test"]
